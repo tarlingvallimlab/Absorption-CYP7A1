@@ -1,2 +1,131 @@
-# absorption-CYP7A1
+# Absorption-CYP7A1
 Code to analyze bulk liver RNA sequencing and microbiome metagenomic shotgun sequencing with loss of CYP7A1.
+
+## Bulk liver RNA sequencing computational methods
+
+Objective: Conduct gene expression computational analysis for 16 livers obtained from control CRISPR and *Cyp7a1* CRISPR mice. The samples are labeled as follows:
+
+| Sample ID | Group | 
+|---|---|
+| 7 | Control CRISPR | 
+| 12 | Control CRISPR |
+| 13 | Control CRISPR |
+| 16 | Control CRISPR |
+| 20 | Control CRISPR |
+| 25 | Control CRISPR |
+| 35 | Control CRISPR |
+| 38 | Control CRISPR |
+| 2 | *Cyp7a1* CRISPR |
+| 5 | *Cyp7a1* CRISPR |
+| 17 | *Cyp7a1* CRISPR |
+| 19 | *Cyp7a1* CRISPR |
+| 24 | *Cyp7a1* CRISPR |
+| 26 | *Cyp7a1* CRISPR |
+| 28 | *Cyp7a1* CRISPR |
+| 36 | *Cyp7a1* CRISPR |
+
+## Microbiome metagenomic shotgun sequencing computational methods
+
+Objective: Conduct microbiome computational analysis for 19 metagenomic shotgun sequencing samples obtained from cecal contents of control CRISPR and *Cyp7a1* CRISPR mice. The samples are labeled as follows:
+
+| Sample ID | Group | 
+|---|---|
+| ETV364_1 | Control CRISPR | 
+| ETV364_3 | Control CRISPR |
+| ETV364_8 | Control CRISPR |
+| ETV364_15 | Control CRISPR |
+| ETV364_17 | Control CRISPR |
+| ETV364_21 | Control CRISPR |
+| ETV364_29 | Control CRISPR |
+| ETV364_33 | Control CRISPR |
+| ETV364_35 |Control CRISPR |
+| ETV364_36 | Control CRISPR |
+| ETV364_7 | *Cyp7a1* CRISPR |
+| ETV364_12 | *Cyp7a1* CRISPR |
+| ETV364_16 | *Cyp7a1* CRISPR |
+| ETV364_20 | *Cyp7a1* CRISPR |
+| ETV364_30 | *Cyp7a1* CRISPR |
+| ETV364_32 | *Cyp7a1* CRISPR |
+| ETV364_37 | *Cyp7a1* CRISPR |
+| ETV364_38 | *Cyp7a1* CRISPR |
+| ETV364_50 | *Cyp7a1* CRISPR |
+
+### Pipeline
+1.	Filter out host contamination from FASTQ files by removing sequences that map to the Mus musculus genome using Bowtie2.
+2.	Filter out index adapters and PhiX sequences from FASTQ files using BBDuk.
+3.	Perform metagenomic taxonomic profiling on filtered FASTQ files using MetaPhlAn.
+4.	Conduct alpha diversity analysis from MetaPhlAn-mapped abundance counts using vegan package in R.
+5.	Conduct beta diversity analysis from MetaPhlAn-mapped abundance counts using vegan and tidyverse packages in R.
+6.	Conduct differential taxa analysis MetaPhlAn-mapped abundance counts using MaAsLin2 in R.
+
+### > Microbiome_Filtering_Mapping
+This folder contains three subfolders, “Scripts,” “Input,” and “Output.”
+
+#### 1. clean_qc.sh
+This script takes in the sample manifest (Input > Metadata.tsv) and raw metagenomic shotgun sequencing FASTQ files (not in folder) to remove host contamination, index adapters, and PhiX (a common Illumina spike-in) sequences using Hoffman2 High-Performance Compute Cluster.
+
+*Filter out host contamination*
++ Bowtie2 v2.5.4
++ BioBakery v3.0
++ *Mus musculus* genome reference: GRCm39 (https://genome-idx.s3.amazonaws.com/bt/GRCm39.zip)
+
+*Filter out index adapters and PhiX sequences*
++ BBDuk, which is part of the BBTools suite v37.62
+
+*Citation:*
++ Langmead B, Wilks C, Antonescu V, Charles R. Scaling read aligners to hundreds of threads on general-purpose processors. *Bioinformatics*. 2019;35(3):421-432. doi:10.1093/bioinformatics/bty648. PMID: 30020410
++ Langmead B, Salzberg SL. Fast gapped-read alignment with Bowtie 2. *Nat Methods*. 2012;9(4):357-359. doi:10.1038/nmeth.1923. PMID: 22388286
++ Bushnell B, Rood J, Singer E. BBMerge - Accurate paired shotgun read merging via overlap. *PLoS One*. 2017;12(10):e0185056. doi:10.1371/journal.pone.0185056. PMID: 29073143.
+
+#### 2. metaphlan.sh
+This script takes in the sample manifest (Input > Metadata.tsv) and filtered FASTQ files (not in folder) produced by the clean_qc.sh script to perform metagenomic taxonomic profiling using Hoffman2 High-Performance Compute Cluster.
+
++ MetaPhlAn v4.1.0
++ BioBakery v3.0
++ Microbial genome reference: mpa_vOct22_CHOCOPhlAnSGB_20221
+
+*Citation:*
++ Blanco-Míguez A, Beghini F, Cumbo F, et al. Extending and improving metagenomic taxonomic profiling with uncharacterized species using MetaPhlAn 4. *Nat Biotechnol*. 2023;41(11):1633-1644. doi:10.1038/s41587-023-01688-w. PMID: 36823356
+
+#### 3. merge_metaphlan_tables_abs.py
+This script parses the abundance tables produced by metaphlan.sh (.txt files, not in folder) into one absolute abundance counts file (Output > merged_metaphlan_filtered_absolute_abundance.txt) using local machine. Adapted from https://github.com/timyerg/Metaphlan-absolute-abundance-merger.
+
++ Python v3.11.7
+
+#### 4. merge_metaphlan_tables_rel.py
+This script parses the abundance tables produced by metaphlan.sh (.txt files, not in folder) into one relative abundance counts file (Output > merged_metaphlan_filtered_absolute_abundance.txt) using local machine. Adapted from https://github.com/timyerg/Metaphlan-absolute-abundance-merger.
+
++ Python v3.11.7
+
+### > Microbiome_Analysis
+This folder contains two subfolders, “Input” and “Output,” which are related to ETV364_Microbiome_Analysis.R.
+
+#### 1. ETV364_Microbiome_Analysis.R
+This script takes in the sample manifest (Input > Metadata.tsv) and MetaPhlAn-mapped absolute abundance file (Input > merged_metaphlan_filtered_absolute_abundance.txt) to conduct alpha diversity, beta diversity, and differential taxa analysis using R.
+
++ R v4.2.1 (2022-06-23)
+
+*Alpha diversity*
+
+Portion of the script creates a filtered MetaPhlAn-mapped absolute abundance file that lists taxa by phylum name (Output > ETV364_phylum_metaphlan_filtered_absolute_abundance.txt) and species name (Output > ETV364_species_metaphlan_filtered_absolute_abundance.txt) for better organization. Additionally, Shannon’s index, Simpson’s index, inverted Simpson’s index, and observed number are calculated at the species level and summarized in one file (Output > ETV364_filtered_alpha_diversity.csv).
+
++ vegan v2.6.4
+
+*Beta diversity*
+
+Portion of the script performs principal coordinate analysis at the species level with Bray-Curtis dissimilarity and conducts a PERMANOVA test (Output > ETV364_filtered_permanovatest_stats_Cyp7a1.csv). A plot will also be generated using principal coordinate analysis results (Output > ETV364_pcoa_plot.png).
+
++ tidyverse v2.0.0
++ vegan v2.6.4
++ ggplot2 v3.5.0
++ cowplot v1.1.3
++ ggpubr v0.6.0
+
+*Differential taxa*
+
+Portion of the script determines significant differential taxa at the species level through MaAsLin2 regression modeling (Output > ETV364_differential_taxa_Maaslin2_Cyp7a1).
+
++ MaAsLin2 v1.12.0
+
+*Citation*
++ Mallick H, Rahnavard A, McIver LJ, et al. Multivariable association discovery in population-scale meta-omics studies. Coelho LP, ed. *PLoS Comput Biol*. 2021;17(11):e1009442. doi:10.1371/journal.pcbi.1009442. PMID: 34784344
