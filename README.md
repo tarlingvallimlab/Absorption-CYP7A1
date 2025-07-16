@@ -48,7 +48,7 @@ This folder contains input and outout for STARalign.sh
 #### 1. STARalign.sh
 This script aligns Trim Galore-trimmed FASTQ files to the *Mus musculus* genome using Terminal (Mac). 
 + STAR v2.7.11a
-+ + *Mus musculus* mm10 reference genome: GCF_000001635.26_GRCm38.p6_genomic.fna
++ *Mus musculus* mm10 reference genome: GCF_000001635.26_GRCm38.p6_genomic.fna
 
 *Citation:*
 + Dobin A, Davis CA, Schlesinger F, Drenkow J, Zaleski C, Jha S, et al. STAR: ultrafast universal RNA-seq aligner. *Bioinforma. Oxf. Engl.* 2013;29:15–21. https://doi.org/10.1093/bioinformatics/bts635. PMID: 23104886
