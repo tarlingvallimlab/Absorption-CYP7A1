@@ -35,12 +35,22 @@ Objective: Conduct gene expression computational analysis for 16 livers obtained
 This folder contains input and output for trimgalore.sh
 
 #### 1. trimgalore.sh
-This script trims adapter sequences and low-quality bases CYP7A1 FASTQ files (not in folder) to the Mus musculus genome (GCF_000001635.26_GRCm38.p6_genomic.fna) using Terminal (Mac).
+This script trims adapter sequences and low-quality bases CYP7A1 FASTQ files (not in folder).
 + Trim Galore v0.6.10
 + Cutadapt v4.0
 
 *Citation:*
 + Martin M. Cutadapt removes adapter sequences from high-throughput sequencing reads. *EMBnetJournal*. 2011;17:10-2. doi:10.14806/ej.17.1.200
+
+### > STAR
+This folder contains input and outout for STARalign.sh
+
+#### 1. STARalign.sh
+This script aligns Trim Galore-trimmed FASTQ files to the Mus musculus genome to the Mus musculus genome (GCF_000001635.26_GRCm38.p6_genomic.fna) using Terminal (Mac). 
++ STAR v2.7.11a
+
+*Citation:*
++ Dobin A, Davis CA, Schlesinger F, Drenkow J, Zaleski C, Jha S, et al. STAR: ultrafast universal RNA-seq aligner. Bioinformatics 2013;29:15–21. https://doi.org/10.1093/bioinformatics/bts635. PMID: 23104886.
 
 ## Microbiome metagenomic shotgun sequencing computational methods
 
