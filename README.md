@@ -24,6 +24,13 @@ Objective: Conduct gene expression computational analysis for 16 livers obtained
 | 28 | *Cyp7a1* CRISPR |
 | 36 | *Cyp7a1* CRISPR |
 
+###Pipeline
+1.	Trim adapters and low-quality bases from raw FASTQ files using Trim Galore.
+2.	Map trimmed FASTQ files to Mus musculus genome (from Ensembl) using STAR.
+3.	Annotate aligned reads and quantify gene counts using Subread featureCounts.
+4.	Conduct differential gene expression analysis using DESeq2 package in R.
+5.	Conduct Gene Set Enrichment Analysis (GSEA) and visualization using clusterProfiler and enrichplot packages in R.
+
 ## Microbiome metagenomic shotgun sequencing computational methods
 
 Objective: Conduct microbiome computational analysis for 19 metagenomic shotgun sequencing samples obtained from cecal contents of control CRISPR and *Cyp7a1* CRISPR mice. The samples are labeled as follows:
