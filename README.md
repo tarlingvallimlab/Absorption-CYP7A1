@@ -39,7 +39,8 @@ This script trims adapter sequences and low-quality bases CYP7A1 FASTQ files (no
 + Trim Galore v0.6.10
 + Cutadapt v4.0
 
-
+*Citation:*
++ Martin M. Cutadapt removes adapter sequences from high-throughput sequencing reads. *EMBnetJournal*. 2011;17:10-2. doi:10.14806/ej.17.1.200
 
 ## Microbiome metagenomic shotgun sequencing computational methods
 
