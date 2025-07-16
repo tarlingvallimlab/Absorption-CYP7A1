@@ -29,7 +29,7 @@ Objective: Conduct gene expression computational analysis for 16 livers obtained
 2.	Map trimmed FASTQ files to Mus musculus genome (from Ensembl) using STAR.
 3.	Annotate aligned reads and quantify gene counts using Subread featureCounts.
 4.	Conduct differential gene expression analysis using DESeq2 package in R.
-5.	Conduct Gene Set Enrichment Analysis (GSEA) and visualization using clusterProfiler and enrichplot packages in R.
+5.	Conduct Gene Set Enrichment Analysis (GSEA) using clusterProfiler package in R.
 
 ### > Trim Galore
 This folder contains input and output for trimgalore.sh
@@ -58,11 +58,39 @@ This folder contains input and output for featurecounts.sh
 
 #### 1. featurecounts.sh
 This script takes in the STAR-mapped reads (INSERT HERE.bam) and the Mus Musculus mm10 reference genome annotation file including chromosomal coordinates and outputs a large matrix of the number of reads assigned to unique gene features. 
+
 + Subread v3.6.3
 + *Mus musculus* mm10 annotation file: Mus_musculus.GRCm38.102.gtf
 
 *Citation:*
 + Liao, Y., Smyth, G. K. & Shi, W. featureCounts: an efficient general purpose program for assigning sequence reads to genomic features. *Bioinforma. Oxf. Engl.* 2014;30:923–930. https://doi.org/10.1093/bioinformatics/btt656. PMID: 24227677
+
+### > DESeq2
+This folder contains the input and output for CYP7A1_absorption_DESeq2.R
+
+#### 1. CYP7A1_absorption_DESeq2.R
+This script takes the raw count matrix created with featureCounts and processes it through DESeq2 modelling to find differentially expressed genes in livers between control CRISPR and *Cyp7a1* CRISPR mice (FDR 5%). This script also generates and exports a dataframe of normalized counts for all samples (DESeq2's median of ratios scaling) from the raw input. Genes whose counts sum to less than 500 across all samples are excluded from normalized counts matrix. 
+
++ R Version
++ dplyr v
++ org.Mm.ed.db
+
+*Citation:*
++ Love MI, Huber W, Anders S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. *Genome Biology*. 2014;15(12):550. https://doi.org/10.1186/s13059-014-0550-8. PMID: 25516281
+
+### > GSEA
+This folder contains the input and output for CYP7A1_absorption_GSEA.R
+
+#### 1. CYP7A1_absorption_GSEA.R
+This script performs GSEA at FDR 10% using the clusterProfiler package 
+
++ R Version 
++ clusterProfiler 3.10.1
++ dplyr
++ org.Mm.eg.db 3.7.0
+
+*Citation:*
++ Love MI, Huber W, Anders S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. *Genome Biology*. 2014;15(12):550. https://doi.org/10.1186/s13059-014-0550-8. PMID: 25516281
   
 ## Microbiome metagenomic shotgun sequencing computational methods
 
