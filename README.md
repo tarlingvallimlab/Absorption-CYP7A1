@@ -24,12 +24,22 @@ Objective: Conduct gene expression computational analysis for 16 livers obtained
 | 28 | *Cyp7a1* CRISPR |
 | 36 | *Cyp7a1* CRISPR |
 
-###Pipeline
+### Pipeline
 1.	Trim adapters and low-quality bases from raw FASTQ files using Trim Galore.
 2.	Map trimmed FASTQ files to Mus musculus genome (from Ensembl) using STAR.
 3.	Annotate aligned reads and quantify gene counts using Subread featureCounts.
 4.	Conduct differential gene expression analysis using DESeq2 package in R.
 5.	Conduct Gene Set Enrichment Analysis (GSEA) and visualization using clusterProfiler and enrichplot packages in R.
+
+### > Trim Galore
+This folder contains input and output for trimgalore.sh
+
+#### 1. trimgalore.sh
+This script trims adapter sequences and low-quality bases CYP7A1 FASTQ files (not in folder) to the Mus musculus genome (GCF_000001635.26_GRCm38.p6_genomic.fna) using Terminal (Mac).
++ Trim Galore v0.6.10
++ Cutadapt v4.0
+
+
 
 ## Microbiome metagenomic shotgun sequencing computational methods
 
