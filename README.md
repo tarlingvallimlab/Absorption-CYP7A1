@@ -46,12 +46,24 @@ This script trims adapter sequences and low-quality bases CYP7A1 FASTQ files (no
 This folder contains input and outout for STARalign.sh
 
 #### 1. STARalign.sh
-This script aligns Trim Galore-trimmed FASTQ files to the Mus musculus genome to the Mus musculus genome (GCF_000001635.26_GRCm38.p6_genomic.fna) using Terminal (Mac). 
+This script aligns Trim Galore-trimmed FASTQ files to the *Mus musculus* genome using Terminal (Mac). 
 + STAR v2.7.11a
++ + *Mus musculus* mm10 reference genome: GCF_000001635.26_GRCm38.p6_genomic.fna
 
 *Citation:*
-+ Dobin A, Davis CA, Schlesinger F, Drenkow J, Zaleski C, Jha S, et al. STAR: ultrafast universal RNA-seq aligner. Bioinformatics 2013;29:15–21. https://doi.org/10.1093/bioinformatics/bts635. PMID: 23104886.
++ Dobin A, Davis CA, Schlesinger F, Drenkow J, Zaleski C, Jha S, et al. STAR: ultrafast universal RNA-seq aligner. *Bioinforma. Oxf. Engl.* 2013;29:15–21. https://doi.org/10.1093/bioinformatics/bts635. PMID: 23104886
 
+### > featureCounts
+This folder contains input and output for featurecounts.sh
+
+#### 1. featurecounts.sh
+This script takes in the STAR-mapped reads (INSERT HERE.bam) and the Mus Musculus mm10 reference genome annotation file including chromosomal coordinates and outputs a large matrix of the number of reads assigned to unique gene features. 
++ Subread v3.6.3
++ *Mus musculus* mm10 annotation file: Mus_musculus.GRCm38.102.gtf
+
+*Citation:*
++ Liao, Y., Smyth, G. K. & Shi, W. featureCounts: an efficient general purpose program for assigning sequence reads to genomic features. *Bioinforma. Oxf. Engl.* 2014;30:923–930. https://doi.org/10.1093/bioinformatics/btt656. PMID: 24227677
+  
 ## Microbiome metagenomic shotgun sequencing computational methods
 
 Objective: Conduct microbiome computational analysis for 19 metagenomic shotgun sequencing samples obtained from cecal contents of control CRISPR and *Cyp7a1* CRISPR mice. The samples are labeled as follows:
