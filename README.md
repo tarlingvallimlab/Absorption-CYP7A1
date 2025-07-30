@@ -66,7 +66,7 @@ This script takes in the STAR-mapped reads (INSERT HERE.bam) and the Mus Musculu
 + Liao, Y., Smyth, G. K. & Shi, W. featureCounts: an efficient general purpose program for assigning sequence reads to genomic features. *Bioinforma. Oxf. Engl.* 2014;30:923–930. https://doi.org/10.1093/bioinformatics/btt656. PMID: 24227677
 
 ### > DESeq2
-This folder contains the input and output for CYP7A1_absorption_DESeq2.R
+This folder contains the R script and output for CYP7A1_absorption_DESeq2.R
 
 #### 1. CYP7A1_absorption_DESeq2.R
 This script takes the raw count matrix created with featureCounts and processes it through DESeq2 modelling to find differentially expressed genes in livers between control CRISPR and *Cyp7a1* CRISPR mice (FDR 5%). This script also generates and exports a dataframe of normalized counts for all samples (DESeq2's median of ratios scaling) from the raw input. Genes whose counts sum to less than 500 across all samples are excluded from normalized counts matrix. 
