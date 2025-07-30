@@ -32,9 +32,9 @@ Objective: Conduct gene expression computational analysis for 16 livers obtained
 5.	Conduct Gene Set Enrichment Analysis (GSEA) using clusterProfiler package in R.
 
 ### > Trim Galore
-This folder contains input and output for trimgalore.sh
+This folder contains input and output for trim.sh
 
-#### 1. trimgalore.sh
+#### 1. trim.sh
 This script trims adapter sequences and low-quality bases CYP7A1 FASTQ files (not in folder).
 + Trim Galore v0.6.10
 + Cutadapt v4.0
