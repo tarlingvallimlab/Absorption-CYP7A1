@@ -29,13 +29,15 @@ Objective: Conduct gene expression computational analysis for 16 livers obtained
 2.	Map trimmed FASTQ files to Mus musculus genome (from Ensembl) using STAR.
 3.	Annotate aligned reads and quantify gene counts using Subread featureCounts.
 4.	Conduct differential gene expression analysis using DESeq2 package in R.
-5.	Conduct Gene Set Enrichment Analysis (GSEA) using clusterProfiler package in R.
+5.	Plot differentially expressed genes as a volcano plot in R.
+6.	Conduct Gene Set Enrichment Analysis (GSEA) using clusterProfiler package in R.
 
 ### > Trim Galore
 This folder contains output for trim.sh
 
 #### 1. trim.sh
 This script trims adapter sequences and low-quality bases CYP7A1 FASTQ files (not in folder).
+
 + Trim Galore v0.6.10
 + Cutadapt v4.0
 
@@ -47,6 +49,7 @@ This folder contains input and outout for STARalign.sh
 
 #### 1. STARalign.sh
 This script aligns Trim Galore-trimmed FASTQ files to the *Mus musculus* genome using Terminal (Mac). 
+
 + STAR v2.7.11a
 + *Mus musculus* mm10 reference genome: GCF_000001635.26_GRCm38.p6_genomic.fna
 
@@ -71,12 +74,23 @@ This folder contains the R script and output for CYP7A1_absorption_DESeq2.R
 #### 1. CYP7A1_absorption_DESeq2.R
 This script takes the raw count matrix created with featureCounts and processes it through DESeq2 modelling to find differentially expressed genes in livers between control CRISPR and *Cyp7a1* CRISPR mice (FDR 5%). This script also generates and exports a dataframe of normalized counts for all samples (DESeq2's median of ratios scaling) from the raw input. Genes whose counts sum to less than 500 across all samples are excluded from normalized counts matrix. 
 
-+ R Version
-+ dplyr v
-+ org.Mm.ed.db
++ R v3.6.3
++ dplyr
++ org.Mm.ed.db 3.7.0
 
 *Citation:*
 + Love MI, Huber W, Anders S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. *Genome Biology*. 2014;15(12):550. https://doi.org/10.1186/s13059-014-0550-8. PMID: 25516281
+
+### > Enhanced_Volcano
+This folder contains the input and output for CYP7A1_absorption_Enhanced_Volcano.R
+
+#### 1. CYP7A1_absorption_Enhanced_Volcano.R
+This script plots the differentially expressed genes generated from CYP7A1_absorption_DESeq2.R ouput as a volcano plot.
+
++ R v4.2.1 (2022-06-23)
++ Enhanced Volcano v1.16.0
++ RColorBrewer v1.1.3
++ ggplot2 v3.5.0
 
 ### > GSEA
 This folder contains the input and output for CYP7A1_absorption_GSEA.R
@@ -84,8 +98,8 @@ This folder contains the input and output for CYP7A1_absorption_GSEA.R
 #### 1. CYP7A1_absorption_GSEA.R
 This script performs GSEA at FDR 10% using the clusterProfiler package 
 
-+ R Version 
-+ clusterProfiler 3.10.1
++ R v3.6.3
++ clusterProfiler v3.10.1
 + dplyr
 + org.Mm.eg.db 3.7.0
 
