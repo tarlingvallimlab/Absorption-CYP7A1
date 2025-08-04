@@ -75,7 +75,7 @@ This folder contains the R script and output for CYP7A1_absorption_DESeq2.R.
 This script takes the raw count matrix created with featureCounts and processes it through DESeq2 modelling to find differentially expressed genes in livers between control CRISPR and *Cyp7a1* CRISPR mice (FDR 5%). This script also generates and exports a dataframe of normalized counts for all samples (DESeq2's median of ratios scaling) from the raw input. Genes whose counts sum to less than 500 across all samples are excluded from normalized counts matrix. 
 
 + R v3.6.3
-+ dplyr
++ dplyr v1.1.1
 + org.Mm.ed.db 3.7.0
 
 *Citation:*
@@ -100,7 +100,7 @@ This script performs GSEA at FDR 10% using the clusterProfiler package using Hal
 
 + R v3.6.3
 + clusterProfiler v3.10.1
-+ dplyr
++ dplyr v1.1.1
 + org.Mm.eg.db 3.7.0
 
 *Citation:*
