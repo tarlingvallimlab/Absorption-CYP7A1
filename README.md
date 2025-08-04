@@ -33,7 +33,7 @@ Objective: Conduct gene expression computational analysis for 16 livers obtained
 6.	Conduct Gene Set Enrichment Analysis (GSEA) using clusterProfiler package in R.
 
 ### > Trim Galore
-This folder contains output for trim.sh
+This folder contains output for trim.sh.
 
 #### 1. trim.sh
 This script trims adapter sequences and low-quality bases CYP7A1 FASTQ files (not in folder).
@@ -42,34 +42,34 @@ This script trims adapter sequences and low-quality bases CYP7A1 FASTQ files (no
 + Cutadapt v4.0
 
 *Citation:*
-+ Martin M. Cutadapt removes adapter sequences from high-throughput sequencing reads. *EMBnetJournal*. 2011;17:10-2. https://doi.org/10.14806/ej.17.1.200
++ Martin M. Cutadapt removes adapter sequences from high-throughput sequencing reads. *EMBnetJournal*. 2011;17:10-2. https://doi.org/10.14806/ej.17.1.200 (https://github.com/FelixKrueger/TrimGalore)
 
 ### > STAR
-This folder contains input and outout for STARalign.sh
+This folder contains input and outout for STARalign.sh.
 
 #### 1. STARalign.sh
-This script aligns Trim Galore-trimmed FASTQ files to the *Mus musculus* genome using Terminal (Mac). 
+This script aligns Trim Galore-trimmed FASTQ files to the *Mus musculus* genome using using Hoffman2 High-Performance Compute Cluster. 
 
 + STAR v2.7.11a
 + *Mus musculus* mm10 reference genome: GCF_000001635.26_GRCm38.p6_genomic.fna
 
 *Citation:*
-+ Dobin A, Davis CA, Schlesinger F, Drenkow J, Zaleski C, Jha S, et al. STAR: ultrafast universal RNA-seq aligner. *Bioinforma. Oxf. Engl.* 2013;29:15–21. https://doi.org/10.1093/bioinformatics/bts635. PMID: 23104886
++ Dobin, A., Davis, C.A., Schlesinger, F., Drenkow, J., Zaleski, C., Jha, S., Batut, P., Chaisson, M., and Gingeras, T.R. (2013). STAR: ultrafast universal RNA-seq aligner. *Bioinformatics* 29, 15–21. https://doi.org/10.1093/bioinformatics/bts635.
 
 ### > featureCounts
-This folder contains input and output for featurecounts.sh
+This folder contains input and output for featurecounts.sh.
 
 #### 1. featurecounts.sh
-This script takes in the STAR-mapped reads (INSERT HERE.bam) and the Mus Musculus mm10 reference genome annotation file including chromosomal coordinates and outputs a large matrix of the number of reads assigned to unique gene features. 
+This script takes in the STAR-mapped reads (INSERT HERE.bam) and the Mus Musculus mm10 reference genome annotation file including chromosomal coordinates and outputs a large matrix of the number of reads assigned to unique gene features using Hoffman2 High-Performance Compute Cluster. 
 
 + Subread v3.6.3
 + *Mus musculus* mm10 annotation file: Mus_musculus.GRCm38.102.gtf
 
 *Citation:*
-+ Liao, Y., Smyth, G. K. & Shi, W. featureCounts: an efficient general purpose program for assigning sequence reads to genomic features. *Bioinforma. Oxf. Engl.* 2014;30:923–930. https://doi.org/10.1093/bioinformatics/btt656. PMID: 24227677
++ Liao, Y., Smyth, G.K., and Shi, W. (2014). featureCounts: an efficient general purpose program for assigning sequence reads to genomic features. *Bioinformatics* 30, 923–930. https://doi.org/10.1093/bioinformatics/btt656.
 
 ### > DESeq2
-This folder contains the R script and output for CYP7A1_absorption_DESeq2.R
+This folder contains the R script and output for CYP7A1_absorption_DESeq2.R.
 
 #### 1. CYP7A1_absorption_DESeq2.R
 This script takes the raw count matrix created with featureCounts and processes it through DESeq2 modelling to find differentially expressed genes in livers between control CRISPR and *Cyp7a1* CRISPR mice (FDR 5%). This script also generates and exports a dataframe of normalized counts for all samples (DESeq2's median of ratios scaling) from the raw input. Genes whose counts sum to less than 500 across all samples are excluded from normalized counts matrix. 
@@ -79,10 +79,10 @@ This script takes the raw count matrix created with featureCounts and processes 
 + org.Mm.ed.db 3.7.0
 
 *Citation:*
-+ Love MI, Huber W, Anders S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. *Genome Biology*. 2014;15(12):550. https://doi.org/10.1186/s13059-014-0550-8. PMID: 25516281
++ Love, M.I., Huber, W., and Anders, S. (2014). Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. *Genome Biol* 15, 550. https://doi.org/10.1186/s13059-014-0550-8.
 
 ### > Enhanced_Volcano
-This folder contains the input and output for CYP7A1_absorption_Enhanced_Volcano.R
+This folder contains the input and output for CYP7A1_absorption_Enhanced_Volcano.R.
 
 #### 1. CYP7A1_absorption_Enhanced_Volcano.R
 This script plots the differentially expressed genes generated from CYP7A1_absorption_DESeq2.R ouput as a volcano plot.
@@ -96,7 +96,7 @@ This script plots the differentially expressed genes generated from CYP7A1_absor
 This folder contains the input and output for CYP7A1_absorption_GSEA.R
 
 #### 1. CYP7A1_absorption_GSEA.R
-This script performs GSEA at FDR 10% using the clusterProfiler package 
+This script performs GSEA at FDR 10% using the clusterProfiler package using Hallmark Gene Sets.
 
 + R v3.6.3
 + clusterProfiler v3.10.1
@@ -104,7 +104,10 @@ This script performs GSEA at FDR 10% using the clusterProfiler package
 + org.Mm.eg.db 3.7.0
 
 *Citation:*
-+ Love MI, Huber W, Anders S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. *Genome Biology*. 2014;15(12):550. https://doi.org/10.1186/s13059-014-0550-8. PMID: 25516281
++ Liberzon, A., Birger, C., Thorvaldsdóttir, H., Ghandi, M., Mesirov, J.P., and Tamayo, P. (2015). The Molecular Signatures Database (MSigDB) hallmark gene set collection. *Cell Syst* 1, 417–425. https://doi.org/10.1016/j.cels.2015.12.004
++ Subramanian, A., Tamayo, P., Mootha, V.K., Mukherjee, S., Ebert, B.L., Gillette, M.A., Paulovich, A., Pomeroy, S.L., Golub, T.R., Lander, E.S., et al. (2005). Gene set enrichment analysis: a knowledge-based approach for interpreting genome-wide expression profiles. *Proc Natl Acad Sci U S A* 102, 15545–15550. https://doi.org/10.1073/pnas.0506580102.
++ Mootha, V.K., Lindgren, C.M., Eriksson, K.-F., Subramanian, A., Sihag, S., Lehar, J., Puigserver, P., Carlsson, E., Ridderstråle, M., Laurila, E., et al. (2003). PGC-1alpha-responsive genes involved in oxidative phosphorylation are coordinately downregulated in human diabetes. *Nat Genet* 34, 267–273. https://doi.org/10.1038/ng1180.
+
   
 ## Microbiome metagenomic shotgun sequencing computational methods
 
@@ -155,9 +158,9 @@ This script takes in the sample manifest (Input > Metadata.tsv) and raw metageno
 + BBDuk, which is part of the BBTools suite v37.62
 
 *Citation:*
-+ Langmead B, Wilks C, Antonescu V, Charles R. Scaling read aligners to hundreds of threads on general-purpose processors. *Bioinformatics*. 2019;35(3):421-432. doi:10.1093/bioinformatics/bty648. PMID: 30020410
-+ Langmead B, Salzberg SL. Fast gapped-read alignment with Bowtie 2. *Nat Methods*. 2012;9(4):357-359. doi:10.1038/nmeth.1923. PMID: 22388286
-+ Bushnell B, Rood J, Singer E. BBMerge - Accurate paired shotgun read merging via overlap. *PLoS One*. 2017;12(10):e0185056. doi:10.1371/journal.pone.0185056. PMID: 29073143.
++ Langmead, B., Wilks, C., Antonescu, V., and Charles, R. (2019). Scaling read aligners to hundreds of threads on general-purpose processors. *Bioinformatics* 35, 421–432. https://doi.org/10.1093/bioinformatics/bty648.
++ Langmead, B., and Salzberg, S.L. (2012). Fast gapped-read alignment with Bowtie 2. *Nat Methods* 9, 357–359. https://doi.org/10.1038/nmeth.1923.
++ Bushnell, B., Rood, J., and Singer, E. (2017). BBMerge - Accurate paired shotgun read merging via overlap. *PLoS One* 12, e0185056. https://doi.org/10.1371/journal.pone.0185056.
 
 #### 2. metaphlan.sh
 This script takes in the sample manifest (Input > Metadata.tsv) and filtered FASTQ files (not in folder) produced by the clean_qc.sh script to perform metagenomic taxonomic profiling using Hoffman2 High-Performance Compute Cluster.
@@ -167,7 +170,7 @@ This script takes in the sample manifest (Input > Metadata.tsv) and filtered FAS
 + Microbial genome reference: mpa_vOct22_CHOCOPhlAnSGB_20221
 
 *Citation:*
-+ Blanco-Míguez A, Beghini F, Cumbo F, et al. Extending and improving metagenomic taxonomic profiling with uncharacterized species using MetaPhlAn 4. *Nat Biotechnol*. 2023;41(11):1633-1644. doi:10.1038/s41587-023-01688-w. PMID: 36823356
++ Blanco-Míguez, A., Beghini, F., Cumbo, F., McIver, L.J., Thompson, K.N., Zolfo, M., Manghi, P., Dubois, L., Huang, K.D., Thomas, A.M., et al. (2023). Extending and improving metagenomic taxonomic profiling with uncharacterized species using MetaPhlAn 4. *Nat Biotechnol* 41, 1633–1644. https://doi.org/10.1038/s41587-023-01688-w.
 
 #### 3. merge_metaphlan_tables_abs.py
 This script parses the abundance tables produced by metaphlan.sh (.txt files, not in folder) into one absolute abundance counts file (Output > merged_metaphlan_filtered_absolute_abundance.txt) using local machine. Adapted from https://github.com/timyerg/Metaphlan-absolute-abundance-merger.
@@ -210,4 +213,4 @@ Portion of the script determines significant differential taxa at the species le
 + MaAsLin2 v1.12.0
 
 *Citation*
-+ Mallick H, Rahnavard A, McIver LJ, et al. Multivariable association discovery in population-scale meta-omics studies. Coelho LP, ed. *PLoS Comput Biol*. 2021;17(11):e1009442. doi:10.1371/journal.pcbi.1009442. PMID: 34784344
++ Mallick, H., Rahnavard, A., McIver, L.J., Ma, S., Zhang, Y., Nguyen, L.H., Tickle, T.L., Weingart, G., Ren, B., Schwager, E.H., et al. (2021). Multivariable association discovery in population-scale meta-omics studies. *PLoS Comput Biol* 17, e1009442. https://doi.org/10.1371/journal.pcbi.1009442.
