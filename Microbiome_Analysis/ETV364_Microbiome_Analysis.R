@@ -23,7 +23,6 @@ metadata = read_tsv("Metadata.tsv")
 # Transform data for phylum diversity stacked plots to be graphed in Prism Graphpad Software
 input_bug_df_phylum <- filter(input_bug_df,!grepl("c__", clade_name)) # only show phylum
 input_bug_df_phylum <- filter(input_bug_df_phylum,grepl("p__", clade_name)) # only show phylum
-input_bug_df_phylum <- input_bug_df_phylum[,-2] # remove clade_taxid column
 input_bug_df_phylum <- rename_at(input_bug_df_phylum, vars(matches("ETV")), ~stringr::str_extract(., "(ETV364)_\\d+")) #clean up column names
 input_bug_df_phylum <- as.data.frame(input_bug_df_phylum)
 input_bug_df_phylum <- t(input_bug_df_phylum)
